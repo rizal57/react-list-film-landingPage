@@ -2,6 +2,7 @@ import './App.css';
 import NavigationBar from './components/NavigationBar';
 import Intro from './components/Intro';
 import Trending from "./components/Trending"
+import SuperHero from "./components/SuperHero"
 import "./style/landingPage.css"
 
 function App() {
@@ -19,6 +20,12 @@ function App() {
         <Trending />
       </div>
       {/* Trending End */}
+
+      {/* Superhero Start */}
+      <div className='superHero'>
+        <SuperHero />
+      </div>
+      {/* Superhero End */}
     </div>
   );
 }

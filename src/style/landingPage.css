@@ -30,6 +30,13 @@
   background-size: cover;
 }
 
+.superHero {
+  padding-bottom: 2rem;
+  min-height: 100vh;
+  background: url("../assets/images/bg/spiderman.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
 .movieImage {
   width: 250px;
 }
