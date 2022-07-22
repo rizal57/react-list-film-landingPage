@@ -1,0 +1,58 @@
+.myBg {
+  height: 100vh;
+  background: url("../assets/images/bg/main.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.brand {
+  font-weight: bold;
+}
+
+.intro {
+  height: 300px;
+  display: flex;
+  align-items: end;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow: 2px 2px 2px black;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.trending {
+  padding-bottom: 2rem;
+  min-height: 100vh;
+  background: url("../assets/images/bg/scifi.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.movieImage {
+  width: 250px;
+}
+
+.movieImage img {
+  height: 360px !important;
+}
+
+.bgOverlay {
+  background: rgba(0, 0, 0, .4);
+  opacity: 0;
+  transition: .3s;
+}
+
+.cardMovie {
+  cursor: pointer;
+  transition: .3s;
+}
+
+.cardMovie:hover {
+  transform: scale(1.04);
+}
+
+.cardMovie:hover .bgOverlay {
+  opacity: 1;
+}
