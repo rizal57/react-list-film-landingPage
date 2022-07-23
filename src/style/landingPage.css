@@ -1,3 +1,7 @@
+.nav {
+  background: rgba(0, 0, 25, 1) !important;
+}
+
 .myBg {
   height: 100vh;
   background: url("../assets/images/bg/main.jpg") no-repeat center center fixed;
@@ -26,15 +30,13 @@
 .trending {
   padding-bottom: 2rem;
   min-height: 100vh;
-  background: url("../assets/images/bg/scifi.jpg") no-repeat center center fixed;
-  background-size: cover;
+  background: rgba(0, 0, 25, 1);
 }
 
 .superHero {
   padding-bottom: 2rem;
   min-height: 100vh;
-  background: url("../assets/images/bg/spiderman.jpg") no-repeat center center fixed;
-  background-size: cover;
+  background: rgba(0, 0, 51, 1);
 }
 
 .movieImage {
@@ -46,14 +48,19 @@
 }
 
 .bgOverlay {
-  background: rgba(0, 0, 0, .4);
+  background: rgba(0, 0, 0, 0.4);
   opacity: 0;
-  transition: .3s;
+  overflow: auto;
+  transition: 0.3s;
+}
+
+.bgOverlay::-webkit-scrollbar {
+  display: none;
 }
 
 .cardMovie {
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .cardMovie:hover {

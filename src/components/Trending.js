@@ -1,15 +1,23 @@
-import { Card, Row, Col, Container } from "react-bootstrap"
-import duneImage from "../assets/images/trending/dune.jpg"
-import everythingImage from "../assets/images/trending/everything.jpg"
-import infiniteImage from "../assets/images/trending/infinite.jpg"
-import jokerImage from "../assets/images/trending/joker.jpg"
-import lightyearImage from "../assets/images/trending/lightyear.jpg"
-import morbiusImage from "../assets/images/trending/morbius.jpg"
+import { useEffect, useState } from "react";
+import { Card, Row, Col, Container, Image } from "react-bootstrap";
+import axios from "axios";
 
 const Trending = () => {
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/discover/movie`, {
+        params: {
+          api_key: process.env.REACT_APP_TMDB_KEY,
+        },
+      })
+      .then((respons) => {
+        setMovies(respons.data.results);
+      });
+  }, []);
   return (
     <div>
-      <Container id='trending'>
+      <Container id="trending">
         <Row>
           <Col>
             <div className="mt-4">
@@ -18,123 +26,27 @@ const Trending = () => {
           </Col>
         </Row>
         <Row>
-          <Col md={3}>
-            <Card className="bg-dark text-white movieImage cardMovie mt-3">
-              <Card.Img src={duneImage} alt="Dune Image" />
-              <Card.ImgOverlay className="bgOverlay">
-                <Card.Title>DUNE</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural lead-in
-                  to additional content.
-                </Card.Text>
-                <Card.Text>Last updated 3 mins ago</Card.Text>
-              </Card.ImgOverlay>
-            </Card>
-          </Col>
-
-          <Col md={3}>
-            <Card className="bg-dark text-white movieImage cardMovie mt-3">
-              <Card.Img src={everythingImage} alt="Dune Image" />
-              <Card.ImgOverlay className="bgOverlay">
-                <Card.Title>EVERYTHING</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural lead-in
-                  to additional content.
-                </Card.Text>
-                <Card.Text>Last updated 3 mins ago</Card.Text>
-              </Card.ImgOverlay>
-            </Card>
-          </Col>
-
-          <Col md={3}>
-            <Card className="bg-dark text-white movieImage cardMovie mt-3">
-              <Card.Img src={infiniteImage} alt="Dune Image" />
-              <Card.ImgOverlay className="bgOverlay">
-                <Card.Title>INFINITE</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural lead-in
-                  to additional content.
-                </Card.Text>
-                <Card.Text>Last updated 3 mins ago</Card.Text>
-              </Card.ImgOverlay>
-            </Card>
-          </Col>
-
-          <Col md={3}>
-            <Card className="bg-dark text-white movieImage cardMovie mt-4">
-              <Card.Img src={jokerImage} alt="Dune Image" />
-              <Card.ImgOverlay className="bgOverlay">
-                <Card.Title>JOKER</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural lead-in
-                  to additional content.
-                </Card.Text>
-                <Card.Text>Last updated 3 mins ago</Card.Text>
-              </Card.ImgOverlay>
-            </Card>
-          </Col>
-
-          <Col md={3}>
-            <Card className="bg-dark text-white movieImage cardMovie mt-4">
-              <Card.Img src={lightyearImage} alt="Dune Image" />
-              <Card.ImgOverlay className="bgOverlay">
-                <Card.Title>LIGHTYEAR</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural lead-in
-                  to additional content.
-                </Card.Text>
-                <Card.Text>Last updated 3 mins ago</Card.Text>
-              </Card.ImgOverlay>
-            </Card>
-          </Col>
-
-          <Col md={3}>
-            <Card className="bg-dark text-white movieImage cardMovie mt-4">
-              <Card.Img src={morbiusImage} alt="Dune Image" />
-              <Card.ImgOverlay className="bgOverlay">
-                <Card.Title>MORBIUS</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural lead-in
-                  to additional content.
-                </Card.Text>
-                <Card.Text>Last updated 3 mins ago</Card.Text>
-              </Card.ImgOverlay>
-            </Card>
-          </Col>
-
-          <Col md={3}>
-            <Card className="bg-dark text-white movieImage cardMovie mt-4">
-              <Card.Img src={duneImage} alt="Dune Image" />
-              <Card.ImgOverlay className="bgOverlay">
-                <Card.Title>DUNE</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural lead-in
-                  to additional content.
-                </Card.Text>
-                <Card.Text>Last updated 3 mins ago</Card.Text>
-              </Card.ImgOverlay>
-            </Card>
-          </Col>
-
-          <Col md={3}>
-            <Card className="bg-dark text-white movieImage cardMovie mt-4">
-              <Card.Img src={morbiusImage} alt="Dune Image" />
-              <Card.ImgOverlay className="bgOverlay">
-                <Card.Title>MORBIUS</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural lead-in
-                  to additional content.
-                </Card.Text>
-                <Card.Text>Last updated 3 mins ago</Card.Text>
-              </Card.ImgOverlay>
-            </Card>
-          </Col>
-
+          {movies.map((result, index) => {
+            return (
+              <Col md={3} key={index}>
+                <Card className="bg-dark text-white movieImage cardMovie mt-3">
+                  <Image
+                    src={`${process.env.REACT_APP_IMG_URL}/${result.poster_path}`}
+                    alt="Poster"
+                  />
+                  <Card.ImgOverlay className="bgOverlay">
+                    <Card.Title>{result.title}</Card.Title>
+                    <Card.Text>{result.overview}</Card.Text>
+                    <Card.Text>{result.release_date}</Card.Text>
+                  </Card.ImgOverlay>
+                </Card>
+              </Col>
+            );
+          })}
         </Row>
       </Container>
-
     </div>
-  )
-}
+  );
+};
 
-export default Trending
+export default Trending;
